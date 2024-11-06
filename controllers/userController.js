@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const { User } = require("../models");
 const NotFoundError = require("../errors/NotFoundError");
 
 module.exports.createOne = async (req, res, next) => {

@@ -1,4 +1,4 @@
-const Dish = require("../models/Dish");
+const { Dish } = require("../models");
 const NotFoundError = require("../errors/NotFoundError");
 
 module.exports.createOne = async (req, res, next) => {
@@ -8,7 +8,7 @@ module.exports.createOne = async (req, res, next) => {
     const dish = new Dish(body);
     dish.ingredients = ingredients;
     await dish.save();
-    res.status(201).json({ dish });
+    res.status(201).send({ dish });
   } catch (err) {
     next(err);
   }
@@ -40,7 +40,7 @@ module.exports.getAll = async (req, res, next) => {
 module.exports.updateOne = async (req, res, next) => {
   try {
     const {
-      body: { name, description, instructions, imageUrl },
+      body: { name, description, instructions },
       ingredients,
     } = req;
     const dish = await Dish.findById(req.params.id);
@@ -53,7 +53,6 @@ module.exports.updateOne = async (req, res, next) => {
     if (description) dish.description = description;
     if (ingredients) dish.ingredients = ingredients;
     if (instructions) dish.instructions = instructions;
-    if (imageUrl) dish.imageUrl = imageUrl;
 
     await dish.save();
     res.status(200).json({ dish });

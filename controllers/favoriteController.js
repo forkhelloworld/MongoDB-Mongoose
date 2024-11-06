@@ -1,6 +1,4 @@
-const Dish = require("../models/Dish");
-const User = require("../models/User");
-const NotFoundeError = require("../errors/NotFoundError");
+const { Dish, User } = require("../models");
 const NotFoundError = require("../errors/NotFoundError");
 
 module.exports.addDish = async (req, res, next) => {
