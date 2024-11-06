@@ -11,6 +11,7 @@ const dishSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Ingredient",
+      required: true,
     },
   ],
   instructions: String,
